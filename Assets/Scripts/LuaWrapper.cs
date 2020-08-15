@@ -4,7 +4,7 @@ using MoonSharp.Interpreter;
 
 public class LuaWrapper 
 {
-    private Script _script;
+    private readonly Script _script;
 
     public LuaWrapper(bool doNotSeed = false)
     {
@@ -29,12 +29,12 @@ public class LuaWrapper
             _script.DoString(statement);
         }
 
-        var result = _script.DoString(expressionToReturn);
+        var result = _script.Globals.Get(expressionToReturn);
 
         return result.Number;
     }
 
-    public string ParseQuestion(string question)
+    public string ParseAndGetQuestion(string question)
     {
         var sb = new StringBuilder();
 
@@ -47,7 +47,7 @@ public class LuaWrapper
                 var statementsLength = nextDollarSign - i - 1;
                 var statements = question.Substring(i + 1, statementsLength);
 
-                sb.Append(ParseAndRunStatements(statements));
+                sb.Append($"{ParseAndRunStatements(statements):0.00}");
                 
                 i = nextDollarSign + 1;
             }
@@ -61,4 +61,9 @@ public class LuaWrapper
         return sb.ToString();
     }
 
+    public string ParseAndGetAnswer(string statement)
+    {
+        var answer = _script.DoString(statement);
+        return $"{_script.Globals.Get("ans").Number:0.00}";
+    }
 }
