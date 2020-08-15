@@ -1,19 +1,45 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using MoonSharp.Interpreter;
+using UnityEngine;
+using UnityEngine.Serialization;
 
-public class LuaWrapper 
+[Serializable]
+public class SerializedQuestions
+{
+    public Question[] questions;
+}
+
+[Serializable]
+public class Question
+{
+    public string text;
+    public string ans;
+}
+
+public class QuestionLoader 
 {
     private readonly Script _script;
+    public Question[] Questions { get; }
 
-    public LuaWrapper(bool doNotSeed = false)
+    public QuestionLoader(string questionsFile, bool doNotSeed = false)
     {
         _script = new Script();
 
+        var jsonData = Resources.Load<TextAsset>(questionsFile);
+        Debug.Log(jsonData);
+        Questions = JsonUtility.FromJson<SerializedQuestions>(jsonData.text).questions;
 
         if (!doNotSeed)
         {
             _script.DoString("math.randomseed(os.time())");
+        }
+        
+        foreach (var question in Questions)
+        {
+            question.text = ParseAndGetQuestion(question.text);
+            question.ans = ParseAndGetAnswer(question.ans);
         }
     }
 
@@ -34,7 +60,7 @@ public class LuaWrapper
         return result.Number;
     }
 
-    public string ParseAndGetQuestion(string question)
+    private string ParseAndGetQuestion(string question)
     {
         var sb = new StringBuilder();
 
@@ -61,7 +87,7 @@ public class LuaWrapper
         return sb.ToString();
     }
 
-    public string ParseAndGetAnswer(string statement)
+    private string ParseAndGetAnswer(string statement)
     {
         var answer = _script.DoString(statement);
         return $"{_script.Globals.Get("ans").Number:0.00}";

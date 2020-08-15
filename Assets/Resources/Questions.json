@@ -1,0 +1,36 @@
+{
+  "questions":[
+    {
+      "text": "A block at rest begins accelerating at $a=10*math.random();a$ m/s/s for $t=10*math.random();t$ seconds before taking off at the end of the runway. How long is the runway?",
+      "ans": "ans = math.abs((a*t*t)/2)"
+    },
+    {
+      "text": "A ball reaches a height of $d=10*math.random();d$ meters before starting to fall back to the ground. At what velocity will a person catch the ball $k=10*math.random();k$ meters above the ground?",
+      "ans": "ans = (-math.sqrt(19.6*(d-k)))"
+    },
+    {
+      "text": "A block accelerates uniformly from $i=10*math.random();i$ m/s to $f=10*math.random();f$ m/s in $t=10*math.random();t$ seconds. What distance did the car travel?",
+      "ans": "ans = (t*(f*f-i*i)/(2*(f-i)))"
+    },
+    {
+      "text": "A block traveling at $i=10*math.random();i$ m/s accelerates at $a=10*math.random();a$ m/s/s for a displacement of $d=10*math.random();d$ m. What is the train's final velocity?",
+      "ans": "ans = (math.sqrt(i*i + 2*a*d))"
+    },
+    {
+      "text": "A ball is dropped at a height of $d=10*math.random();d$ meters on the moon, where the acceleration of gravity is 1/6 of Earth's gravitational acceleration. How long does it take the feather to reach the ground?",
+      "ans": "ans = (math.sqrt(2*d/(9.8/6)))"
+    },
+    {
+      "text": "A ball leaves a paintball gun with a muzzle velocity of $f=10*math.random();f$ m/s. While accelerating through the barrel of the paintball gun, the ball moves a distance of $d=10*math.random();d$ centimeters. What is the acceleration of the ball in m/s/s?",
+      "ans": "ans = ((50*f*f)/(d))"
+    },
+    {
+      "text": "A block begins to accelerate for $t=10*math.random();t$ seconds. In this time, the block has traveled $d=10*math.random();d$ meters. What is the block's average acceleration?",
+      "ans": " ans = ((2*d)/(t*t))"
+    },
+    {
+      "text": "A moving block begins accelerating upstream at $a=10*math.random();a$ m/s/s, against water that is moving at $k=10*math.random();k$ m/s. If the boat requires $t=10*math.random();t$ seconds to travel $d=10*math.random();d$ meters, what is the boat's initial velocity?",
+      "ans": "ans = (((2*d-a*t*t)/t)+k)"
+    }
+  ]
+}
