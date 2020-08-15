@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +6,8 @@ public enum PhysicControlType
 {
     StaticFriction,
     DynamicFriction,
-    Elasticity
+    Elasticity,
+    Mass
 }
 
 public class PhysicSliderController : MonoBehaviour
@@ -16,7 +15,7 @@ public class PhysicSliderController : MonoBehaviour
     public TextMeshProUGUI sliderValue;
     Slider slider;
     public PhysicControlType type;
-    public SimulationManager simManager;
+    private SimulationManager simManager;
 
     public GameObject controlledObject { set; private get; }
 
@@ -29,6 +28,7 @@ public class PhysicSliderController : MonoBehaviour
     public void RefreshValue()
     {
         var matToImport = simManager.selectedCollider.material;
+        var rbToImport = simManager.selectedRigidbody;
         switch (type)
         {
             case PhysicControlType.StaticFriction:
@@ -39,6 +39,16 @@ public class PhysicSliderController : MonoBehaviour
                 break;
             case PhysicControlType.Elasticity:
                 slider.value = matToImport.bounciness;
+                break;
+            case PhysicControlType.Mass:
+                if (rbToImport == null)
+                {
+                    slider.interactable = false;
+                    slider.value = 0;
+                    break;
+                }
+                slider.interactable = true;
+                slider.value = rbToImport.mass;
                 break;
         }
 
@@ -52,6 +62,7 @@ public class PhysicSliderController : MonoBehaviour
         sliderValue.text = newText.Substring(0, Mathf.Min(newText.Length, 5));
 
         var matToUpdate = simManager.selectedCollider.material;
+        var rbToUpdate = simManager.selectedRigidbody;
         switch (type)
         {
             case PhysicControlType.StaticFriction:
@@ -62,6 +73,11 @@ public class PhysicSliderController : MonoBehaviour
                 break;
             case PhysicControlType.Elasticity:
                 matToUpdate.bounciness = slider.value;
+                break;
+            case PhysicControlType.Mass:
+                if (rbToUpdate == null)
+                    break;
+                rbToUpdate.mass = slider.value;
                 break;
         }
     }
