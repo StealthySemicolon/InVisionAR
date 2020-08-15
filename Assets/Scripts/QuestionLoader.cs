@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using MoonSharp.Interpreter;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [Serializable]
 public class SerializedQuestions
@@ -28,7 +27,6 @@ public class QuestionLoader
         _script = new Script();
 
         var jsonData = Resources.Load<TextAsset>(questionsFile);
-        Debug.Log(jsonData);
         Questions = JsonUtility.FromJson<SerializedQuestions>(jsonData.text).questions;
 
         if (!doNotSeed)
