@@ -29,7 +29,7 @@ public class LuaWrapper
             _script.DoString(statement);
         }
 
-        var result = _script.DoString(expressionToReturn);
+        var result = _script.Globals.Get(expressionToReturn);
 
         return result.Number;
     }
@@ -47,7 +47,7 @@ public class LuaWrapper
                 var statementsLength = nextDollarSign - i - 1;
                 var statements = question.Substring(i + 1, statementsLength);
 
-                sb.Append(ParseAndRunStatements(statements));
+                sb.Append($"{ParseAndRunStatements(statements):0.00}");
                 
                 i = nextDollarSign + 1;
             }
