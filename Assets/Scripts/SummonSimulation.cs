@@ -18,14 +18,15 @@ public class SummonSimulation : MonoBehaviour
 
     void Update()
     {
-        if (!simStarted && Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
-        {
-            simRef.transform.SetPositionAndRotation(placementIndicator.transform.position, placementIndicator.transform.rotation);
-            placementIndicatorObject.SetActive(false);
-            simRef.SetActive(true);
+        if (!simStarted)
+            if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+            {
+                simRef.transform.SetPositionAndRotation(placementIndicator.transform.position, placementIndicator.transform.rotation);
+                placementIndicatorObject.SetActive(false);
+                simRef.SetActive(true);
 
-            simStarted = true;
-        }
+                simStarted = true;
+            }
     }
 
 }
