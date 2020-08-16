@@ -7,6 +7,7 @@ public class SummonSimulation : MonoBehaviour
     public GameObject simRef;
     public GameObject placementIndicatorObject;
     private PlacementIndicatorScript placementIndicator;
+    private bool simStarted = false;
 
     void Start()
     {
@@ -15,11 +16,13 @@ public class SummonSimulation : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began && !simStarted)
         {
             simRef.transform.SetPositionAndRotation(placementIndicator.transform.position, placementIndicator.transform.rotation);
             placementIndicatorObject.SetActive(false);
             simRef.SetActive(true);
+
+            simStarted = true;
         }
     }
 
