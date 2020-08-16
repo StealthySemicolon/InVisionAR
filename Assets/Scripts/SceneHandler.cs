@@ -10,8 +10,8 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("InclinedPlaneSim");
     }
 
-    public void EndApplication()
+    public void GoToSciences()
     {
-        Application.Quit();
+        SceneManager.LoadScene("ScienceSubjects");
     }
 }
