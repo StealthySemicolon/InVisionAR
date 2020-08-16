@@ -7,11 +7,13 @@ public class SummonSimulation : MonoBehaviour
     public GameObject simRef;
     public GameObject placementIndicatorObject;
     private PlacementIndicatorScript placementIndicator;
-    private bool simStarted = false;
+    private bool simStarted;
 
     void Start()
     {
         placementIndicator = placementIndicatorObject.GetComponent<PlacementIndicatorScript>();
+        simStarted = false;
+        simRef.SetActive(false);
     }
 
     void Update()
