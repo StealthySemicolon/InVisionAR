@@ -8,6 +8,7 @@ public class SimulationManager : MonoBehaviour
     public Slider timeSlider;
     public Selectable selected;
     public Collider selectedCollider;
+    public Rigidbody selectedRigidbody;
     public TextMeshProUGUI selectedText;
 
     void SetTime(float newTime)
@@ -38,6 +39,7 @@ public class SimulationManager : MonoBehaviour
                     {
                         selected = selectable;
                         selectedCollider = selectable.gameObject.GetComponent<Collider>();
+                        selectedRigidbody = selectable.gameObject.GetComponent<Rigidbody>();
                         RefreshSelected();
                     }
                 }
