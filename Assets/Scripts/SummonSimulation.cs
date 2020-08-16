@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class SummonSimulation : MonoBehaviour
 {
-    public GameObject simulationToSpawn;
+    public GameObject simRef;
+    public GameObject placementIndicatorObject;
     private PlacementIndicatorScript placementIndicator;
 
     void Start()
     {
-        placementIndicator = FindObjectOfType<PlacementIndicatorScript>();
+        placementIndicator = placementIndicatorObject.GetComponent<PlacementIndicatorScript>();
     }
 
     void Update()
     {
-        if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
-            GameObject simulation = Instantiate(simulationToSpawn, placementIndicator.transform.position + new Vector3(0, 5, 0), placementIndicator.transform.rotation);
+            simRef.transform.SetPositionAndRotation(placementIndicator.transform.position, placementIndicator.transform.rotation);
+            placementIndicatorObject.SetActive(false);
+            simRef.SetActive(true);
         }
     }
 
