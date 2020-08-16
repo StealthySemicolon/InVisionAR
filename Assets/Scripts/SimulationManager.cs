@@ -25,9 +25,9 @@ public class SimulationManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo, 100f))
             {
