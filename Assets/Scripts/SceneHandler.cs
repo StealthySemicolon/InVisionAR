@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
-    public void GoToInclinePlaneSim()
+    public void GoToSubjectSelection()
     {
-        SceneManager.LoadScene("InclinedPlaneSim");
+        SceneManager.LoadScene("SubjectSelection");
     }
 
-    public void GoToSciences()
+    public void EndApplication()
     {
-        SceneManager.LoadScene("ScienceSubjects");
+        Application.Quit();
     }
 }

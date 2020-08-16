@@ -6,7 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Simulator.unity
-    guid: a776f0f2b23b7ec48a536a6129f0bdfa
+    path: Assets/Scenes/MainMenu.unity
+    guid: c584a3fd75dc24289aa5d1614453b631
+  - enabled: 1
+    path: Assets/Scenes/SubjectSelection.unity
+    guid: 38f5fbb9b4c864dba917302fbd10bb6e
+  - enabled: 1
+    path: Assets/Scenes/ScienceSubjects.unity
+    guid: eaafe822700ff43b590d65534d2fafa7
+  - enabled: 1
+    path: Assets/Scenes/GeneralPhysicsSelection.unity
+    guid: 4f41e35baa0484c749199e303842fa51
+  - enabled: 1
+    path: Assets/Scenes/Sim_Quiz_Selection.unity
+    guid: 2a1146fb52d244562b926bf3366a4229
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e1a91bfe0a7a64640981b613e983f30d, type: 2}
