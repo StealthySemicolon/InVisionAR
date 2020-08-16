@@ -18,7 +18,7 @@ public class SummonSimulation : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began && !simStarted)
+        if (!simStarted && Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             simRef.transform.SetPositionAndRotation(placementIndicator.transform.position, placementIndicator.transform.rotation);
             placementIndicatorObject.SetActive(false);
