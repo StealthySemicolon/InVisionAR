@@ -8,6 +8,7 @@ public class SummonSimulation : MonoBehaviour
     public GameObject placementIndicatorObject;
     private PlacementIndicatorScript placementIndicator;
     private bool simStarted;
+    public GameObject canvas;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class SummonSimulation : MonoBehaviour
                 simRef.transform.SetPositionAndRotation(placementIndicator.transform.position, placementIndicator.transform.rotation);
                 placementIndicatorObject.SetActive(false);
                 simRef.SetActive(true);
+                canvas.SetActive(true);
 
                 simStarted = true;
             }
